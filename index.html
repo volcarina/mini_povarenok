@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <!-- 2: -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🍳 Мини-поварёнок!</title>
+    <meta name="description" content="Детское PWA-приложение. Приготовь простые рецепты с помощью подробных инструкций!">
+    <meta name="keywords" content="детские рецепты, поварёнок, кулинария для детей, PWA, таймер готовки">
+    
+    <!-- 7: -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Didact+Gothic&family=Pangolin&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="src/css/style.css">
+</head>
+<body>
+    <!-- 10: -->
+    <nav class="toc-app">
+        <ol id="toc-list"></ol>
+    </nav>
+
+    <!-- 5: -->
+    <header class="hero">
+        <h1>🍳 Мини-поварёнок</h1>
+        <p class="fun-text">Выбери свою вкусняшку!</p>
+    </header>
+
+    <main>
+        <!-- 5: -->
+        <section id="recommend">
+            <h2>🔥 Сегодня готовим</h2>
+            <!-- 11: -->
+            <div class="recipe-grid">
+                <!-- 12: -->
+                <article class="recipe-card">
+                    <div class="recipe-emoji">👹🍕</div>
+                    <h3>Пицца-монстр</h3>
+                    <div class="recipe-time">15 мин</div>
+                </article>
+                <article class="recipe-card">
+                    <div class="recipe-emoji">🌈🥤</div>
+                    <h3>Радужный смузи</h3>
+                    <div class="recipe-time">5 мин</div>
+                </article>
+                <!-- 12: -->
+                <article class="recipe-card">
+                    <div class="recipe-emoji">🧁🎃</div>
+                    <h3>Торт-призрак</h3>
+                    <div class="recipe-time">25 мин</div>
+                </article>
+                <!-- 12: -->
+                <article class="recipe-card">
+                    <div class="recipe-emoji">🍔🦄</div>
+                    <h3>Единорог-бургер</h3>
+                    <div class="recipe-time">12 мин</div>
+                </article>
+            </div>
+        </section>
+
+        <!-- 6: -->
+        <hr class="divider divider-1">
+
+        <!-- 5: -->
+        <section id="popular">
+            <h2>⭐ Наши хиты</h2>
+            <!-- 11: -->
+            <ol class="list">
+                <li class="list-item">
+                    <span class="emoji">🦖🍲</span>
+                    <strong>Динозавр-суп</strong> • 20 мин
+                </li>
+                <li class="list-item">
+                    <span class="emoji">🧟🍔</span>
+                    <strong>Зомби-бургер</strong> • 12 мин
+                </li>
+            </ol>
+        </section>
+
+        <!-- 6: -->
+        <div class="divider divider-1"></div>
+
+        <!-- 5: -->
+        <section id="about">
+            <h2>🎮 Как играть?</h2>
+            <!-- 8: -->
+            <p class="text">1️⃣ Выбери рецепт</p>
+            <p class="text">2️⃣ Отмечай галочками шаги</p>
+            <p class="text">3️⃣ Получи грамоту заслуженного поварёнка! 🎉</p>
+            
+            <!-- 12: -->
+            <figure>
+                <img 
+                src="https://previews.123rf.com/images/pressmaster/pressmaster2202/pressmaster220200486/182061038-children-pouring-dough-together-wearing-aprons-looking-at-each-other-with-wide-smiles-while.avif" 
+                alt="Процесс готовки" 
+                width="400" 
+                height="255"
+                >
+                <figcaption>Готовим вместе!</figcaption>
+            </figure>
+        </section>
+
+        <!-- 6: -->
+        <hr class="divider divider-2">
+    </main>
+
+    <!-- 9: -->
+    <footer id="analogues">
+        <h2>🔗 Похожие приложения</h2>
+        <!-- 11: -->
+        <ul class="list">
+            <li class="list-item">
+                <span>👨‍🍳</span> 
+                <a href="https://apps.apple.com/br/app/criachef/id6446380461">CriaChef</a>
+            </li>
+            <li class="list-item">
+                <span>🍔</span> 
+                <a href="https://apps.apple.com/ru/app/kids-meals-recipes-guides/id1613090960">Kids Meals: Recipes & Guides</a>
+            </li>
+            <li class="list-item">
+                <span>🧁</span> 
+                <a href="https://menunedeli.ru/chto-prigotovit-rebenku/">Рецепты для детей</a>
+            </li>
+        </ul>
+    </footer>
+
+    <!-- 10: -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const sections = document.querySelectorAll('section[id]');
+            const toc = document.getElementById('toc-list');
+            sections.forEach(s => {
+                const li = document.createElement('li');
+                const a = document.createElement('a');
+                a.href = `#${s.id}`;
+                a.textContent = s.querySelector('h2').textContent;
+                li.appendChild(a);
+                toc.appendChild(li);
+            });
+        });
+    </script>
+</body>
+</html>
