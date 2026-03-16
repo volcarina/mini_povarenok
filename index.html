@@ -1,143 +1,153 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="ru">
-<head>
-    <!-- 2: -->
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>🍳 Мини-поварёнок!</title>
-    <meta name="description" content="Детское PWA-приложение. Приготовь простые рецепты с помощью подробных инструкций!">
-    <meta name="keywords" content="детские рецепты, поварёнок, кулинария для детей, PWA, таймер готовки">
+  <head>
+    <!-- 7 -->
     
-    <!-- 7: -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Didact+Gothic&family=Pangolin&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="src/css/style.css">
-</head>
-<body>
-    <!-- 10: -->
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>🍳 Мини-поварёнок!</title>
+    <meta name="description" content="Детское PWA-приложение. Приготовь простые рецепты!" />
+    <meta name="keywords" content="детские рецепты, поварёнок, PWA, таймер готовки" />
+
+    <!-- 7 -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Didact+Gothic&family=Pangolin&display=swap" rel="stylesheet" />
+    
+    <!-- 1, 7 -->
+    <link rel="stylesheet" href="src/css/style.css" />
+    
+  </head>
+  <body>
+    <!-- 10 -->
     <nav class="toc-app">
-        <ol id="toc-list"></ol>
+      <ol id="toc-list"></ol>
     </nav>
 
-    <!-- 5: -->
+    <!-- 2, 4 -->
     <header class="hero">
-        <h1>🍳 Мини-поварёнок</h1>
-        <p class="fun-text">Выбери свою вкусняшку!</p>
+      <h1>🍳 Мини-поварёнок</h1>
+      <p class="fun-text">Выбери свою вкусняшку!</p>
     </header>
 
+    <!-- ПЕРВЫЙ БЛОК MAIN -->
     <main>
-        <!-- 5: -->
-        <section id="recommend">
-            <h2>🔥 Сегодня готовим</h2>
-            <!-- 11: -->
-            <div class="recipe-grid">
-                <!-- 12: -->
-                <article class="recipe-card">
-                    <div class="recipe-emoji">👹🍕</div>
-                    <h3>Пицца-монстр</h3>
-                    <div class="recipe-time">15 мин</div>
-                </article>
-                <article class="recipe-card">
-                    <div class="recipe-emoji">🌈🥤</div>
-                    <h3>Радужный смузи</h3>
-                    <div class="recipe-time">5 мин</div>
-                </article>
-                <!-- 12: -->
-                <article class="recipe-card">
-                    <div class="recipe-emoji">🧁🎃</div>
-                    <h3>Торт-призрак</h3>
-                    <div class="recipe-time">25 мин</div>
-                </article>
-                <!-- 12: -->
-                <article class="recipe-card">
-                    <div class="recipe-emoji">🍔🦄</div>
-                    <h3>Единорог-бургер</h3>
-                    <div class="recipe-time">12 мин</div>
-                </article>
-            </div>
-        </section>
-
-        <!-- 6: -->
-        <hr class="divider divider-1">
-
-        <!-- 5: -->
-        <section id="popular">
-            <h2>⭐ Наши хиты</h2>
-            <!-- 11: -->
-            <ol class="list">
-                <li class="list-item">
-                    <span class="emoji">🦖🍲</span>
-                    <strong>Динозавр-суп</strong> • 20 мин
-                </li>
-                <li class="list-item">
-                    <span class="emoji">🧟🍔</span>
-                    <strong>Зомби-бургер</strong> • 12 мин
-                </li>
-            </ol>
-        </section>
-
-        <!-- 6: -->
-        <div class="divider divider-1"></div>
-
-        <!-- 5: -->
-        <section id="about">
-            <h2>🎮 Как играть?</h2>
-            <!-- 8: -->
-            <p class="text">1️⃣ Выбери рецепт</p>
-            <p class="text">2️⃣ Отмечай галочками шаги</p>
-            <p class="text">3️⃣ Получи грамоту заслуженного поварёнка! 🎉</p>
-            
-            <!-- 12: -->
-            <figure>
-                <img 
-                src="https://previews.123rf.com/images/pressmaster/pressmaster2202/pressmaster220200486/182061038-children-pouring-dough-together-wearing-aprons-looking-at-each-other-with-wide-smiles-while.avif" 
-                alt="Процесс готовки" 
-                width="400" 
-                height="255"
-                >
-                <figcaption>Готовим вместе!</figcaption>
-            </figure>
-        </section>
-
-        <!-- 6: -->
-        <hr class="divider divider-2">
+      <!-- 3, 5 -->
+      <section id="recommend">
+        <!-- 2, 4 -->
+        <h2>🔥 Рекомендуем</h2>
+        <!-- 11 -->
+        <div class="recipe-grid">
+          <!-- 12 -->
+          <article class="recipe-card">
+            <div class="recipe-emoji">👹🍕</div>
+            <h3>Пицца-монстр</h3>
+            <div class="recipe-time">15 мин</div>
+          </article>
+          <article class="recipe-card">
+            <div class="recipe-emoji">🌈🥤</div>
+            <h3>Радужный смузи</h3>
+            <div class="recipe-time">5 мин</div>
+          </article>
+          <article class="recipe-card">
+            <div class="recipe-emoji">🧁🎃</div>
+            <h3>Торт-призрак</h3>
+            <div class="recipe-time">25 мин</div>
+          </article>
+          <article class="recipe-card">
+            <div class="recipe-emoji">🍔🦄</div>
+            <h3>Единорог-бургер</h3>
+            <div class="recipe-time">12 мин</div>
+          </article>
+        </div>
+        <!-- 3 -->
+        <button class="add-recipe-btn">🖊️ + Добавить рецепт</button>
+      </section>
     </main>
 
-    <!-- 9: -->
+    <!-- 6 -->
+    <hr class="divider divider-1" />
+
+    <main>
+      <!-- 3, 5 -->
+      <section id="popular">
+        <!-- 2, 4 -->
+        <h2>⭐ Популярные</h2>
+        <!-- 5, 11 -->
+        <ol class="list">
+          <li class="list-item">
+            <span class="emoji">🦖🍲</span>
+            <strong>Динозавр-суп</strong> • 20 мин
+          </li>
+          <li class="list-item">
+            <span class="emoji">🧟🍔</span>
+            <strong>Зомби-бургер</strong> • 12 мин
+          </li>
+          <li class="list-item">
+            <span class="emoji">🚀🍕</span>
+            <strong>Ракета-пицца</strong> • 18 мин
+          </li>
+          <li class="list-item">
+            <span class="emoji">🦄🧋</span>
+            <strong>Единорог-латте</strong> • 7 мин
+          </li>
+        </ol>
+      </section>
+    </main>
+
+    <!-- 6 -->
+    <hr class="divider divider-2" />
+
+    <!-- 3, 9 -->
     <footer id="analogues">
-        <h2>🔗 Похожие приложения</h2>
-        <!-- 11: -->
-        <ul class="list">
-            <li class="list-item">
-                <span>👨‍🍳</span> 
-                <a href="https://apps.apple.com/br/app/criachef/id6446380461">CriaChef</a>
-            </li>
-            <li class="list-item">
-                <span>🍔</span> 
-                <a href="https://apps.apple.com/ru/app/kids-meals-recipes-guides/id1613090960">Kids Meals: Recipes & Guides</a>
-            </li>
-            <li class="list-item">
-                <span>🧁</span> 
-                <a href="https://menunedeli.ru/chto-prigotovit-rebenku/">Рецепты для детей</a>
-            </li>
-        </ul>
+      <!-- 2, 4 -->
+      <h2>🔗 Похожие приложения</h2>
+      <!-- 5, 11 -->
+      <ul class="list">
+        <!-- 6 -->
+        <li class="list-item">
+          <span>👨‍🍳</span>
+          <a href="https://apps.apple.com/br/app/criachef/id6446380461">CriaChef</a>
+        </li>
+        <!-- 6 -->
+        <li class="list-item">
+          <span>🍔</span>
+          <a href="https://apps.apple.com/ru/app/kids-meals-recipes-guides/id1613090960">Kids Meals: Recipes & Guides</a>
+        </li>
+        <!-- 6 -->
+        <li class="list-item">
+          <span>🧁</span> 
+          <a href="https://menunedeli.ru/chto-prigotovit-rebenku/">Рецепты для детей</a>
+        </li>
+      </ul>
     </footer>
 
-    <!-- 10: -->
+    <!-- 10 -->
     <script>
-        document.addEventListener('DOMContentLoaded', () => {
-            const sections = document.querySelectorAll('section[id]');
-            const toc = document.getElementById('toc-list');
-            sections.forEach(s => {
-                const li = document.createElement('li');
-                const a = document.createElement('a');
-                a.href = `#${s.id}`;
-                a.textContent = s.querySelector('h2').textContent;
-                li.appendChild(a);
-                toc.appendChild(li);
-            });
+      document.addEventListener('DOMContentLoaded', () => {
+        const toc = document.getElementById('toc-list');
+        
+        const navItems = [
+          { text: '🏠 Главная', href: '#recommend', active: true },
+          { text: '🔥 История', href: '#history', active: false },
+          { text: '👤 Кабинет', href: '#profile', active: false },
+          { text: '⚙️ Настройки', href: '#settings', active: false }
+        ];
+        
+        navItems.forEach(item => {
+          const li = document.createElement('li');
+          const a = document.createElement('a');
+          a.href = item.href;
+          a.textContent = item.text;
+          if (!item.active) {
+            a.style.opacity = '0.5';
+            a.style.cursor = 'not-allowed';
+            a.style.fontStyle = 'italic';
+          }
+          li.appendChild(a);
+          toc.appendChild(li);
         });
+      });
     </script>
-</body>
+  </body>
 </html>
