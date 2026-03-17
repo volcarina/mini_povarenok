@@ -8,19 +8,83 @@
     --shadow: 0 10px 30px rgba(0,0,0,.15);
 }
 
+/* 1 */
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+/* 2,4 */
+body { 
+    font-family: 'Didact Gothic', sans-serif; 
+    background: radial-gradient(circle at 30% 20%, rgba(201,152,250,.3) 0%, transparent 40%),
+                linear-gradient(135deg, #C68DFE 0%, #F7F7F7 50%, #A8E10B 100%);
+    padding: 20px; 
+    min-height: 100vh; 
+    text-align: center; 
+    position: relative;
+    overflow-x: hidden;
+}
+
+/* 3 */
+body::before {
+    content: ''; 
+    position: fixed; inset: 0; 
+    background: url('../bg-mini-povar.jpg') center/cover; 
+    filter: blur(2px) brightness(1.3); 
+    z-index: -1;
+}
+
+/* 2,4 */
+h1, h2 { 
+    font-family: 'Pangolin', cursive; 
+    color: var(--dark); 
+    margin-bottom: 20px;
+}
+h1 { font-size: clamp(2em, 5vw, 2.5em); }
+h2 { font-size: clamp(1.5em, 4vw, 2em); }
+.fun-text { font-size: 1.4em; color: var(--dark);  margin: 25px; }
+.text { margin: 15px 0; font-size: 1.2em; }
+
 /* 3 */
 .card, main > section, .recipe-card, .list-item {
     background: rgba(255,255,255,.95);
     border-radius: 20px;
     padding: 25px;
-    margin: 20px auto;
+    margin: 30px auto;
     box-shadow: var(--shadow);
     border: 3px solid rgba(255,255,255,.6);
     backdrop-filter: blur(10px);
     max-width: 1000px;
 }
 
-/* 3, 10 */
+/* 3 */
+.recipe-card, .list-item {
+    transition: transform .3s, box-shadow .3s; 
+    cursor: pointer;
+}
+.recipe-card:hover, .list-item:hover { 
+    transform: translateY(-5px); 
+    box-shadow: 0 20px 50px rgba(0,0,0,.25); 
+}
+
+/* 4 */
+.recipe-emoji { font-size: 3.5em; margin-bottom: 15px; }
+.emoji { font-size: 2.2em; margin: 10px;}
+
+/* 3 */
+.recipe-time { 
+    background: var(--accent); 
+    padding: 8px 16px; 
+    border-radius: 25px; 
+    font-weight: 600; 
+    margin-top: 10px;
+    display: inline-block;
+}
+
+/* 12 */
+img { max-width: 100%; height: auto; border-radius: 20px; box-shadow: var(--shadow); margin-bottom: 15px; }
+figure { display: flex; flex-direction: column; align-items: center; margin: 40px 0; }
+figcaption { font-style: italic; color: #666; }
+
+/* 3,10 */
 .toc-app { 
     background: linear-gradient(135deg, var(--red), #ff8a80);
     color: white;
@@ -40,32 +104,6 @@
     padding: 25px 15px;
     box-shadow: 5px 0 20px rgba(0,0,0,0.3);
 }
-
-/* 1 */
-* { margin: 0; padding: 0; box-sizing: border-box; }
-
-/* 2, 4 */
-body { 
-    font-family: 'Didact Gothic', sans-serif; 
-    background: radial-gradient(circle at 30% 20%, rgba(201,152,250,.3) 0%, transparent 40%),
-                linear-gradient(135deg, #C68DFE 0%, #F7F7F7 50%, #A8E10B 100%);
-    padding: 20px; 
-    min-height: 100vh; 
-    text-align: center; 
-    position: relative;
-    overflow-x: hidden;
-}
-
-/* 3 */
-body::before {
-    content: ''; 
-    position: fixed; 
-    inset: 0; 
-    background: url('../bg-mini-povar.jpg') center/cover; 
-    filter: blur(2px) brightness(1.3); 
-    z-index: -1;
-}
-
 #toc-list {
     display: flex;
     flex-direction: column;
@@ -74,7 +112,6 @@ body::before {
     padding: 0;
     margin: 0;
 }
-
 #toc-list a {
     display: block;
     padding: 15px 20px;
@@ -90,7 +127,6 @@ body::before {
     white-space: nowrap;
     letter-spacing: 0.5px;
 }
-
 #toc-list a:hover {
     background: rgba(0,0,0,.9);
     transform: translateX(5px);
@@ -98,55 +134,33 @@ body::before {
     border-color: var(--accent);
 }
 
-/* 2, 4 */
-h1, h2 { 
-    font-family: 'Pangolin', cursive; 
-    color: var(--dark); 
-    margin-bottom: 20px; 
-}
-
-/* 4 */
-h1 { font-size: clamp(2em, 5vw, 2.5em); }
-h2 { font-size: clamp(1.5em, 4vw, 2em); }
-
-/* 2 */
-.fun-text { font-size: 1.4em; color: var(--dark); }
-.text { margin: 15px 0; font-size: 1.2em;}
-
 /* 11 */
 .recipe-grid { 
     display: grid; 
     grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); 
     gap: 25px; 
-    margin: 30px 0;
+    margin: 40px 0;
 }
 
 /* 5 */
 .list { list-style: none; margin: 30px 0; }
-
-/* 3 */
-.recipe-card, .list-item { 
-    transition: transform .3s, box-shadow .3s; 
-    cursor: pointer;
+.list-item {
+    position: relative;
+    padding-left: 40px;
+    border-radius: 12px;
+    margin: 15px 0;
 }
-
-.recipe-card:hover, .list-item:hover { 
-    transform: translateY(-5px); 
-    box-shadow: 0 20px 50px rgba(0,0,0,.25); 
+.list-item::before {
+    content: "⭐";
+    position: absolute;
+    left: 10px;
+    font-size: 1.2em;
 }
-
-/* 4 */
-.recipe-emoji { font-size: 3.5em; margin-bottom: 15px; }
-.emoji { font-size: 2.2em; }
-
-/* 3 */
-.recipe-time { 
-    background: var(--accent); 
-    padding: 8px 16px; 
-    border-radius: 25px; 
+.list-item a { 
+    color: var(--purple); 
     font-weight: 600; 
-    margin-top: 10px;
-    display: inline-block;
+    font-size: 1.1em; 
+    text-decoration: none; 
 }
 
 /* 3 */
@@ -163,7 +177,6 @@ h2 { font-size: clamp(1.5em, 4vw, 2em); }
     display: block;
     transition: all .3s;
 }
-
 .add-recipe-btn:hover {
     transform: scale(1.05);
     box-shadow: 0 10px 30px rgba(168,225,12,0.4);
@@ -172,99 +185,36 @@ h2 { font-size: clamp(1.5em, 4vw, 2em); }
 /* 6 */
 .divider { 
     height: 1px; 
-    margin: 70px 0; 
+    margin: 80px 0; 
     width: 100vw;
     position: relative; 
     left: 50%; 
-    right: 50%; 
     margin-left: -50vw; 
-    margin-right: -50vw; 
     border: none; 
     z-index: 1;
     pointer-events: none;
 }
-
-/* 6 */
 .divider-1 { 
     height: 8px; 
     background: linear-gradient(90deg, var(--purple), var(--red), var(--accent)); 
     border-radius: 4px; 
 }
-
-/* 6 */
 .divider-2 { 
     height: 4px; 
     background: repeating-linear-gradient(90deg, transparent 0 25px, var(--dark) 25px 30px); 
 }
 
-/* 12 */
-figure { display: flex; flex-direction: column; align-items: center; margin: 40px 0; }
-
-/* 3 */
-img { max-width: 100%; height: auto; border-radius: 20px; box-shadow: var(--shadow); margin-bottom: 15px; }
-
-/* 2 */
-figcaption { font-style: italic; color: #666; }
-
-/* 5 */
-.list-item {
-    position: relative;
-    padding-left: 40px;
-    border-radius: 12px;
-    margin: 10px 0;
-    list-style: none;
-}
-
-/* 5 */
-.list-item::before {
-    content: "⭐";
-    position: absolute;
-    left: 10px;
-    font-size: 1.2em;
-}
-
-/* 2, 9, 6 */
-.list-item a { 
-    color: var(--purple); 
-    font-weight: 600; 
-    font-size: 1.1em; 
-    text-decoration: none; 
-}
-
-/* 6 */
-a[href*="apple.com"] {
-    font-size: 1.15em;
-    color: #ff6b6b;
-}
-
-/* 6 */
-main, header {
-    margin-left: 220px;
-    padding: 0 20px;
-    width: calc(100% - 220px);
-}
-
-/* 6 */
-main > section {
-    max-width: 1000px;
-    margin-left: auto;
-    margin-right: auto;
-}
-
-/* 3, 6, 9 */
+/* 6,9 */
 #analogues {
     margin-left: 220px;
     padding: 40px 20px;
     width: calc(100% - 220px);
     text-align: center;
 }
-
 #analogues h2 {
     margin-bottom: 30px;
     color: var(--dark);
 }
-
-/* 5, 6 */
 #analogues .list {
     display: flex;
     justify-content: center;
@@ -274,8 +224,6 @@ main > section {
     margin: 0;
     padding: 0;
 }
-
-/* 6 */
 #analogues .list-item {
     background: none;
     border: none;
@@ -286,13 +234,7 @@ main > section {
     width: auto;
     transform: none !important;
 }
-
-/* 6 */
-#analogues .list-item::before {
-    display: none;
-}
-
-/* 6 */
+#analogues .list-item::before { display: none; }
 #analogues .list-item a {
     display: flex;
     align-items: center;
@@ -309,19 +251,15 @@ main > section {
     transition: all 0.3s;
     box-shadow: 0 4px 15px rgba(0,0,0,0.1);
 }
-
 #analogues .list-item a:hover {
     background: rgba(255, 255, 255, 0.35);
     border-color: var(--accent);
     transform: translateY(-3px);
     box-shadow: 0 8px 25px rgba(0,0,0,0.15);
 }
+#analogues .list-item span { font-size: 1.5em;}
 
-#analogues .list-item span {
-    font-size: 1.5em;
-}
-
-/* Мобильная версия */
+/* 7 */
 @media (max-width: 768px) {
     .toc-app {
         position: fixed;
@@ -337,13 +275,11 @@ main > section {
         transform: none;
         padding: 15px;
     }
-    
     #toc-list {
         flex-direction: row;
         justify-content: space-around;
         width: 100%;
     }
-    
     #toc-list a {
         writing-mode: horizontal-tb;
         width: auto;
@@ -353,50 +289,36 @@ main > section {
         white-space: nowrap;
         transform: none;
     }
-    
-    #toc-list a:hover {
-        transform: translateY(-3px);
-    }
-    
+    #toc-list a:hover { transform: translateY(-3px); }
+
     main, header, #analogues {
         margin-left: 0;
         padding: 0 15px;
         width: 100%;
     }
-    
     #analogues {
         padding: 30px 15px;
         margin-bottom: 100px;
     }
-    
-    #analogues .list {
-        gap: 15px;
-    }
-    
-    #analogues .list-item a {
-        padding: 12px 20px;
-        font-size: 1em;
-    }
+    #analogues .list { gap: 15px; }
+    #analogues .list-item a { padding: 12px 20px; font-size: 1em; }
 }
 
-/* Для совсем маленьких экранов */
+/* 8 */
 @media (max-width: 480px) {
-    .toc-app {
-        padding: 10px;
-    }
-    
-    #toc-list a {
-        padding: 10px 8px;
-        font-size: 0.9em;
-    }
-    
+    .toc-app { padding: 10px; }
+    #toc-list a { padding: 10px 8px; font-size: 0.9em; }
     #analogues .list {
         flex-direction: column;
         align-items: center;
     }
-    
     #analogues .list-item a {
         width: 100%;
         justify-content: center;
     }
 }
+
+/* 6 */
+main, header { margin-left: 220px; padding: 0 20px; width: calc(100% - 220px); }
+main > section { max-width: 1000px; margin: 0 auto; }
+a[href*="apple.com"] { font-size: 1.15em; color: #ff6b6b; }
