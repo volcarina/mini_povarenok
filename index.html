@@ -2,7 +2,7 @@
 <html lang="ru">
   <head>
     <!-- 7 -->
-    
+
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>🍳 Мини-поварёнок!</title>
@@ -13,10 +13,9 @@
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Didact+Gothic&family=Pangolin&display=swap" rel="stylesheet" />
-    
+
     <!-- 1, 7 -->
     <link rel="stylesheet" href="src/css/style.css" />
-    
   </head>
   <body>
     <!-- 10 -->
@@ -112,11 +111,13 @@
         <!-- 6 -->
         <li class="list-item">
           <span>🍔</span>
-          <a href="https://apps.apple.com/ru/app/kids-meals-recipes-guides/id1613090960">Kids Meals: Recipes & Guides</a>
+          <a href="https://apps.apple.com/ru/app/kids-meals-recipes-guides/id1613090960"
+            >Kids Meals: Recipes & Guides</a
+          >
         </li>
         <!-- 6 -->
         <li class="list-item">
-          <span>🧁</span> 
+          <span>🧁</span>
           <a href="https://menunedeli.ru/chto-prigotovit-rebenku/">Рецепты для детей</a>
         </li>
       </ul>
@@ -125,29 +126,29 @@
     <!-- 10 -->
     <script>
       document.addEventListener('DOMContentLoaded', () => {
-        const toc = document.getElementById('toc-list');
-        
+        const toc = document.getElementById('toc-list')
+
         const navItems = [
           { text: '🏠 Главная', href: '#recommend', active: true },
           { text: '🔥 История', href: '#history', active: false },
           { text: '👤 Кабинет', href: '#profile', active: false },
-          { text: '⚙️ Настройки', href: '#settings', active: false }
-        ];
-        
-        navItems.forEach(item => {
-          const li = document.createElement('li');
-          const a = document.createElement('a');
-          a.href = item.href;
-          a.textContent = item.text;
+          { text: '⚙️ Настройки', href: '#settings', active: false },
+        ]
+
+        navItems.forEach((item) => {
+          const li = document.createElement('li')
+          const a = document.createElement('a')
+          a.href = item.href
+          a.textContent = item.text
           if (!item.active) {
-            a.style.opacity = '0.5';
-            a.style.cursor = 'not-allowed';
-            a.style.fontStyle = 'italic';
+            a.style.opacity = '0.5'
+            a.style.cursor = 'not-allowed'
+            a.style.fontStyle = 'italic'
           }
-          li.appendChild(a);
-          toc.appendChild(li);
-        });
-      });
+          li.appendChild(a)
+          toc.appendChild(li)
+        })
+      })
     </script>
   </body>
 </html>
