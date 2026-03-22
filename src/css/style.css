@@ -216,7 +216,9 @@ figure {
   gap: 12px;
   list-style: none;
 }
-#toc-list a {
+#toc-list
+
+a {
   display: block;
   padding: 15px 20px;
   background: rgba(0, 0, 0, 0.7);
