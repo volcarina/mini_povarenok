@@ -10,19 +10,11 @@
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Didact+Gothic&family=Pangolin&display=swap" rel="stylesheet" />
-
-    <style>
-      figcaption {
-        font-style: italic;
-        color: #666;
-      }
-    </style>
-
     <link rel="stylesheet" href="src/css/style.css" />
   </head>
   <body>
     <nav class="toc-app">
-      <ol id="toc-list" style="padding: 0; margin: 0"></ol>
+      <ol id="toc-list"></ol>
     </nav>
 
     <header class="hero">
@@ -31,6 +23,7 @@
     </header>
 
     <main>
+      <!-- Рекомендуемые рецепты -->
       <section id="recommend">
         <h2>🔥 Рекомендуем</h2>
         <div class="recipe-grid">
@@ -38,21 +31,25 @@
             <div class="recipe-emoji">👹🍕</div>
             <h3>Пицца-монстр</h3>
             <div class="recipe-time">15 мин</div>
+            <div class="new-badge">🍴 Новинка!</div>
           </article>
           <article class="recipe-card">
             <div class="recipe-emoji">🌈🥤</div>
             <h3>Радужный смузи</h3>
             <div class="recipe-time">5 мин</div>
+            <div class="new-badge">🍴 Новинка!</div>
           </article>
           <article class="recipe-card">
             <div class="recipe-emoji">🧁🎃</div>
             <h3>Торт-призрак</h3>
             <div class="recipe-time">25 мин</div>
+            <div class="new-badge">🍴 Новинка!</div>
           </article>
           <article class="recipe-card">
             <div class="recipe-emoji">🍔🦄</div>
             <h3>Единорог-бургер</h3>
             <div class="recipe-time">12 мин</div>
+            <div class="new-badge">🍴 Новинка!</div>
           </article>
         </div>
         <button class="add-recipe-btn">🖊️ + Добавить рецепт</button>
@@ -60,6 +57,34 @@
 
       <hr class="divider divider-1" />
 
+      <!-- Преимущества приложения -->
+      <section id="features" class="card">
+        <h2>🚀 Почему мы лучшие?</h2>
+        <div class="clearfix">
+          <div class="float-column" data-emoji="🎉">
+            <h3>Веселое обучение</h3>
+            <p>
+              Каждый рецепт превращается в игру! Галочки, эмодзи и награды делают процесс готовки веселым и
+              увлекательным.
+            </p>
+          </div>
+          <div class="float-column" data-emoji="⏱️">
+            <h3>Быстро и просто</h3>
+            <p>Все рецепты рассчитаны на детей — от 5 до 25 минут. Легко повторять и готовить вместе с родителями.</p>
+          </div>
+          <div class="float-column" data-emoji="🏆">
+            <h3>Награды для маленьких поварят</h3>
+            <p>
+              Шаги отмечаются галочками, а после выполнения — грамоты и веселые смайлы! Мотивация готовить с улыбкой.
+            </p>
+          </div>
+        </div>
+        <p>Попробуй наше приложение и стань настоящим мини-поварёнком! 🍳</p>
+      </section>
+
+      <hr class="divider divider-1" />
+
+      <!-- Популярные рецепты -->
       <section id="popular">
         <h2>⭐ Популярные</h2>
         <ol class="list">
@@ -84,20 +109,18 @@
 
       <hr class="divider divider-1" />
 
+      <!-- Как играть -->
       <section id="about" class="card">
         <h2>🎮 Как играть?</h2>
-
         <div class="steps-list">
           <div class="step-item">
             <span class="step-number">1️⃣</span>
             <strong>Выбери рецепт</strong>
           </div>
-
           <div class="step-item">
             <span class="step-number">2️⃣</span>
             <strong>Отмечай галочками шаги</strong>
           </div>
-
           <div class="step-item">
             <span class="step-number">3️⃣</span>
             <strong>Получи грамоту заслуженного поварёнка! 🎉</strong>
@@ -112,28 +135,29 @@
           <figcaption>Готовим вместе!</figcaption>
         </figure>
       </section>
+
       <hr class="divider divider-2" />
     </main>
 
+    <!-- Футер -->
     <footer id="analogues">
       <h2>🔗 Похожие приложения</h2>
       <ul class="list">
         <li class="list-item">
-          <span>👨‍🍳</span>
-          <a href="https://apps.apple.com/br/app/criachef/id6446380461">CriaChef</a>
+          <a href="https://apps.apple.com/br/app/criachef/id6446380461">👨‍🍳 CriaChef</a>
         </li>
         <li class="list-item">
-          <span>🍔</span>
           <a href="https://apps.apple.com/ru/app/kids-meals-recipes-guides/id1613090960"
-            >Kids Meals: Recipes & Guides</a
+            >🍔 Kids Meals: Recipes & Guides</a
           >
         </li>
         <li class="list-item">
-          <span>🧁</span>
-          <a href="https://menunedeli.ru/chto-prigotovit-rebenku/">Рецепты для детей</a>
+          <a href="https://menunedeli.ru/chto-prigotovit-rebenku/">🧁 Рецепты для детей</a>
         </li>
       </ul>
     </footer>
+
+    <button id="to-top">⬆️</button>
 
     <script>
       document.addEventListener('DOMContentLoaded', () => {
@@ -158,6 +182,10 @@
           }
           li.appendChild(a)
           toc.appendChild(li)
+        })
+
+        document.getElementById('to-top').addEventListener('click', () => {
+          window.scrollTo({ top: 0, behavior: 'smooth' })
         })
       })
     </script>

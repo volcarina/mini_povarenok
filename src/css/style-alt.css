@@ -1,6 +1,5 @@
-/* 8: Альтернативный стилевой файл */
+/* Альтернативный стилевой файл */
 
-/* 1 */
 :root {
   --main-color: #333;
   --bg-color: #f0f0f0;
@@ -13,7 +12,6 @@
   box-sizing: border-box;
 }
 
-/* 2,4 */
 body {
   font-family: Arial, sans-serif;
   background: var(--bg-color);
@@ -94,12 +92,10 @@ body::before {
   opacity: 0.8;
 }
 
-/* 4 */
 .recipe-emoji {
   font-size: 2.5em;
 }
 
-/* 5 */
 .list {
   list-style: disc;
   margin: 20px 0;
@@ -137,7 +133,6 @@ body::before {
   transition: all 0.3s;
 }
 
-/* 6 */
 #toc-list {
   list-style: none;
 }
@@ -210,7 +205,7 @@ body::before {
 
 main,
 header {
-  margin-left: 220px;
+  margin-left: 270px;
   padding: 0 20px;
   width: calc(100% - 220px);
 }
@@ -250,6 +245,7 @@ a[href*='apple.com'] {
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
 }
 
+/* About images */
 #about figure {
   max-width: 500px;
   margin: 30px auto;
@@ -275,4 +271,64 @@ a[href*='apple.com'] {
   font-size: 1.4em;
   color: var(--main-color);
   font-weight: 600;
+}
+
+#features {
+  max-width: 1000px;
+  margin: 30px auto;
+  padding: 20px;
+}
+
+#features .clearfix::after {
+  content: '';
+  display: table;
+  clear: both;
+}
+
+#features .float-column {
+  float: left;
+  width: 30%;
+  margin: 1.66%;
+  background: #e2c8ff;
+  border-radius: 8px;
+  padding: 20px;
+  min-height: 280px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  text-align: center;
+  transition:
+    transform 0.3s ease,
+    box-shadow 0.3s ease;
+}
+
+#features .float-column:hover {
+  transform: translateY(-8px) scale(1.05);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
+}
+
+#features .float-column h3::before {
+  content: attr(data-emoji);
+  display: block;
+  font-size: 2em;
+  margin-bottom: 10px;
+  transition: transform 0.3s ease;
+}
+
+#features .float-column:hover h3::before {
+  transform: rotate(10deg) scale(1.2);
+}
+
+#popular .list-item {
+  transition:
+    transform 0.3s ease,
+    box-shadow 0.3s ease;
+  cursor: pointer;
+  border-radius: 5px;
+  padding: 10px 15px;
+}
+#popular .list-item:hover {
+  transform: translateY(-3px) scale(1.02);
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.12);
 }
