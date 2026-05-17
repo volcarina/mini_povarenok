@@ -43,7 +43,7 @@
             </li>
 
             <li class="nav-item">
-              <a class="nav-link active">
+              <a class="nav-link active" href="profile.html">
                 <i class="bi bi-person-circle"></i>
                 Кабинет
               </a>
@@ -62,7 +62,6 @@
 
     <main class="container mt-5 pt-4">
       <!-- Профиль пользователя -->
-
       <section class="card p-4 text-center">
         <div class="row align-items-center">
           <div class="col-md-3">
@@ -70,19 +69,18 @@
               src="https://cdn-icons-png.flaticon.com/512/4140/4140048.png"
               class="img-fluid rounded-circle"
               width="120"
+              alt="Аватар поварёнка"
             />
           </div>
 
           <div class="col-md-9 text-md-start">
             <h2>👤 Маленький поварёнок</h2>
-
             <p class="text-muted">Юный мастер кухни 🍳</p>
           </div>
         </div>
       </section>
 
       <!-- Статистика -->
-
       <section class="card p-4">
         <h2 class="mb-3">📊 Статистика</h2>
 
@@ -97,38 +95,33 @@
           <tbody>
             <tr>
               <td>🍳 Приготовлено блюд</td>
-              <td>12</td>
+              <td id="totalDishesCount">12</td>
             </tr>
-
             <tr>
               <td>🔥 Лучший стрик</td>
               <td>5 дней подряд</td>
             </tr>
-
             <tr>
               <td>🍔 Бургеры</td>
-              <td>3</td>
+              <td id="burgerCount">3</td>
             </tr>
-
             <tr>
               <td>🍕 Пиццы</td>
-              <td>4</td>
+              <td id="pizzaCount">4</td>
             </tr>
-
             <tr>
               <td>🥤 Напитки</td>
-              <td>5</td>
+              <td id="drinkCount">5</td>
             </tr>
           </tbody>
         </table>
       </section>
 
       <!-- Форма публикации -->
-
       <section class="card p-4">
         <h2>📝 Поделись своим кулинарным творением</h2>
 
-        <form>
+        <form id="recipeForm">
           <div class="mb-3">
             <label class="form-label"> Название блюда </label>
 
@@ -137,50 +130,49 @@
                 <i class="bi bi-egg-fried"></i>
               </span>
 
-              <input type="text" class="form-control" placeholder="Например: Пицца-монстр" />
+              <input type="text" class="form-control" id="dishName" placeholder="Например: Пицца-монстр" required />
             </div>
           </div>
 
           <div class="mb-3">
             <label class="form-label"> Категория </label>
 
-            <select class="form-select">
-              <option>Пицца</option>
-              <option>Бургер</option>
-              <option>Десерт</option>
-              <option>Напиток</option>
+            <select class="form-select" id="dishCategory">
+              <option value="Пицца">Пицца</option>
+              <option value="Бургер">Бургер</option>
+              <option value="Десерт">Десерт</option>
+              <option value="Напиток">Напиток</option>
             </select>
           </div>
 
           <div class="mb-3">
             <label class="form-label"> Описание рецепта </label>
 
-            <textarea class="form-control" rows="3" placeholder="Расскажи как ты готовил..."></textarea>
+            <textarea
+              class="form-control"
+              id="dishDescription"
+              rows="3"
+              placeholder="Расскажи как ты готовил..."
+            ></textarea>
           </div>
 
           <div class="mb-3">
             <label class="form-label"> Время приготовления </label>
 
             <div class="input-group">
-              <input type="number" class="form-control" placeholder="15" />
+              <input type="number" class="form-control" id="dishTime" placeholder="15" value="15" min="1" />
 
               <span class="input-group-text"> минут </span>
             </div>
           </div>
 
-          <div class="mb-4">
-            <label class="form-label"> Добавить фото </label>
-
-            <input class="form-control" type="file" />
-          </div>
-
           <div class="btn-group">
-            <button class="btn btn-success">
+            <button type="submit" class="btn btn-success">
               <i class="bi bi-upload"></i>
               Опубликовать
             </button>
 
-            <button class="btn btn-outline-secondary">
+            <button type="button" id="cancelFormBtn" class="btn btn-outline-secondary">
               <i class="bi bi-x-circle"></i>
               Отмена
             </button>
@@ -189,50 +181,397 @@
       </section>
 
       <!-- Посты пользователя -->
-
       <section class="card p-4">
-        <h2>📚 Мои рецепты</h2>
+        <h2>
+          📚 Мои рецепты
+          <button id="clearAllRecipesBtn" class="btn btn-sm btn-outline-danger ms-2">
+            <i class="bi bi-trash3"></i> Очистить всё
+          </button>
+        </h2>
 
-        <div class="row g-4 mt-2">
-          <div class="col-md-4">
-            <div class="card">
+        <div id="recipesContainer" class="row g-4 mt-2">
+          <!-- Стартовые карточки  -->
+          <div class="col-md-4 recipe-card-item" data-id="rec1" data-category="Пицца">
+            <div class="card h-100">
               <div class="card-body text-center">
                 <h5>👹🍕 Пицца-монстр</h5>
-
-                <p class="text-muted">Очень страшно вкусная пицца!</p>
-
-                <span class="badge bg-success"> 15 мин </span>
+                <p class="text-muted small">Очень страшно вкусная пицца!</p>
+                <span class="badge bg-success">15 мин</span>
+                <div class="recipe-card-actions">
+                  <button class="btn btn-sm btn-outline-primary edit-recipe-btn">
+                    <i class="bi bi-pencil"></i> Изменить
+                  </button>
+                  <button class="btn btn-sm btn-outline-danger delete-recipe-btn">
+                    <i class="bi bi-x-lg"></i> Удалить
+                  </button>
+                </div>
               </div>
             </div>
           </div>
 
-          <div class="col-md-4">
-            <div class="card">
+          <div class="col-md-4 recipe-card-item" data-id="rec2" data-category="Напиток">
+            <div class="card h-100">
               <div class="card-body text-center">
                 <h5>🌈🥤 Радужный смузи</h5>
-
-                <p class="text-muted">Фруктовый напиток всех цветов радуги.</p>
-
-                <span class="badge bg-info"> 5 мин </span>
+                <p class="text-muted small">Фруктовый напиток всех цветов радуги.</p>
+                <span class="badge bg-info">5 мин</span>
+                <div class="recipe-card-actions">
+                  <button class="btn btn-sm btn-outline-primary edit-recipe-btn">
+                    <i class="bi bi-pencil"></i> Изменить
+                  </button>
+                  <button class="btn btn-sm btn-outline-danger delete-recipe-btn">
+                    <i class="bi bi-x-lg"></i> Удалить
+                  </button>
+                </div>
               </div>
             </div>
           </div>
 
-          <div class="col-md-4">
-            <div class="card">
+          <div class="col-md-4 recipe-card-item" data-id="rec3" data-category="Десерт">
+            <div class="card h-100">
               <div class="card-body text-center">
                 <h5>🧁🎃 Торт-призрак</h5>
-
-                <p class="text-muted">Весёлый десерт для праздника.</p>
-
-                <span class="badge bg-warning"> 25 мин </span>
+                <p class="text-muted small">Весёлый десерт для праздника.</p>
+                <span class="badge bg-warning">25 мин</span>
+                <div class="recipe-card-actions">
+                  <button class="btn btn-sm btn-outline-primary edit-recipe-btn">
+                    <i class="bi bi-pencil"></i> Изменить
+                  </button>
+                  <button class="btn btn-sm btn-outline-danger delete-recipe-btn">
+                    <i class="bi bi-x-lg"></i> Удалить
+                  </button>
+                </div>
               </div>
             </div>
           </div>
         </div>
+
+        <div id="emptyRecipesMessage" style="display: none" class="empty-recipes-message">
+          <i class="bi bi-emoji-frown"></i>
+          Пока нет ни одного рецепта. Добавьте свой первый шедевр!
+        </div>
       </section>
     </main>
 
+    <!-- Toast-уведомления -->
+    <div class="toast-container position-fixed bottom-0 end-0 p-3">
+      <div
+        id="liveToast"
+        class="toast"
+        role="alert"
+        aria-live="assertive"
+        aria-atomic="true"
+        data-bs-autohide="true"
+        data-bs-delay="2000"
+      >
+        <div class="toast-header">
+          <i class="bi bi-info-circle-fill me-2"></i>
+          <strong class="me-auto">Мини-поварёнок</strong>
+          <button type="button" class="btn-close" data-bs-dismiss="toast"></button>
+        </div>
+        <div class="toast-body" id="toastMessage">Действие выполнено</div>
+      </div>
+    </div>
+
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
+
+    <script>
+      ;(function () {
+        const recipesContainer = document.getElementById('recipesContainer')
+        const emptyMsgDiv = document.getElementById('emptyRecipesMessage')
+        const totalDishesSpan = document.getElementById('totalDishesCount')
+        const burgerCountSpan = document.getElementById('burgerCount')
+        const pizzaCountSpan = document.getElementById('pizzaCount')
+        const drinkCountSpan = document.getElementById('drinkCount')
+
+        let pendingEditCard = null
+        let pendingEditData = null
+
+        function updateStatistics() {
+          const allCards = document.querySelectorAll('.recipe-card-item')
+          const totalRecipes = allCards.length
+          totalDishesSpan.textContent = totalRecipes
+
+          let burgerTotal = 0,
+            pizzaTotal = 0,
+            drinkTotal = 0
+          allCards.forEach((card) => {
+            const category = card.getAttribute('data-category')
+            if (category === 'Бургер') burgerTotal++
+            else if (category === 'Пицца') pizzaTotal++
+            else if (category === 'Напиток') drinkTotal++
+          })
+          burgerCountSpan.textContent = burgerTotal
+          pizzaCountSpan.textContent = pizzaTotal
+          drinkCountSpan.textContent = drinkTotal
+
+          if (totalRecipes === 0) {
+            recipesContainer.style.display = 'none'
+            emptyMsgDiv.style.display = 'block'
+          } else {
+            recipesContainer.style.display = 'flex'
+            emptyMsgDiv.style.display = 'none'
+          }
+        }
+
+        function showToast(message, isError = false) {
+          const toastEl = document.getElementById('liveToast')
+          const toastBody = document.getElementById('toastMessage')
+          toastBody.textContent = message
+          const toastHeader = toastEl.querySelector('.toast-header')
+          if (isError) {
+            toastHeader.style.backgroundColor = '#f8d7da'
+            toastHeader.style.color = '#721c24'
+          } else {
+            toastHeader.style.backgroundColor = ''
+            toastHeader.style.color = ''
+          }
+          const bsToast = new bootstrap.Toast(toastEl)
+          bsToast.show()
+          setTimeout(() => {
+            if (!isError) toastHeader.style.backgroundColor = ''
+          }, 2000)
+        }
+
+        function deleteRecipeCard(cardElement) {
+          if (!cardElement) return
+          cardElement.remove()
+          updateStatistics()
+          showToast('Рецепт удалён! ❌', false)
+        }
+
+        function escapeHtml(str) {
+          if (!str) return ''
+          return str.replace(/[&<>]/g, function (m) {
+            if (m === '&') return '&amp;'
+            if (m === '<') return '&lt;'
+            if (m === '>') return '&gt;'
+            return m
+          })
+        }
+
+        function createRecipeCard(recipeData) {
+          const categoryMap = {
+            Пицца: { badgeClass: 'bg-success', icon: '🍕' },
+            Бургер: { badgeClass: 'bg-primary', icon: '🍔' },
+            Десерт: { badgeClass: 'bg-warning', icon: '🍰' },
+            Напиток: { badgeClass: 'bg-info', icon: '🥤' },
+          }
+          const catInfo = categoryMap[recipeData.category] || { badgeClass: 'bg-secondary', icon: '🍽️' }
+          const timeText = `${recipeData.time} мин`
+
+          const colDiv = document.createElement('div')
+          colDiv.className = 'col-md-4 recipe-card-item'
+          colDiv.setAttribute('data-id', recipeData.id)
+          colDiv.setAttribute('data-category', recipeData.category)
+
+          const cardDiv = document.createElement('div')
+          cardDiv.className = 'card h-100 card-transition'
+
+          const cardBody = document.createElement('div')
+          cardBody.className = 'card-body text-center'
+
+          const titleH5 = document.createElement('h5')
+          titleH5.innerHTML = `${catInfo.icon} ${escapeHtml(recipeData.name)}`
+
+          const descPara = document.createElement('p')
+          descPara.className = 'text-muted small'
+          descPara.textContent = recipeData.description ? recipeData.description.substring(0, 60) : 'Вкусный рецепт'
+
+          const badgeSpan = document.createElement('span')
+          badgeSpan.className = `badge ${catInfo.badgeClass}`
+          badgeSpan.textContent = timeText
+
+          const actionsDiv = document.createElement('div')
+          actionsDiv.className = 'recipe-card-actions'
+
+          const editBtn = document.createElement('button')
+          editBtn.className = 'btn btn-sm btn-outline-primary edit-recipe-btn'
+          editBtn.innerHTML = '<i class="bi bi-pencil"></i> Изменить'
+          const deleteBtn = document.createElement('button')
+          deleteBtn.className = 'btn btn-sm btn-outline-danger delete-recipe-btn'
+          deleteBtn.innerHTML = '<i class="bi bi-x-lg"></i> Удалить'
+
+          actionsDiv.appendChild(editBtn)
+          actionsDiv.appendChild(deleteBtn)
+          cardBody.appendChild(titleH5)
+          cardBody.appendChild(descPara)
+          cardBody.appendChild(badgeSpan)
+          cardBody.appendChild(actionsDiv)
+          cardDiv.appendChild(cardBody)
+          colDiv.appendChild(cardDiv)
+
+          editBtn.addEventListener('click', (e) => {
+            e.stopPropagation()
+            fillFormForEdit(colDiv, recipeData)
+          })
+          deleteBtn.addEventListener('click', (e) => {
+            e.stopPropagation()
+            if (confirm(`Удалить рецепт "${recipeData.name}"?`)) {
+              deleteRecipeCard(colDiv)
+            }
+          })
+
+          return colDiv
+        }
+
+        function fillFormForEdit(cardElement, existingData) {
+          const nameInput = document.getElementById('dishName')
+          const categorySelect = document.getElementById('dishCategory')
+          const descTextarea = document.getElementById('dishDescription')
+          const timeInput = document.getElementById('dishTime')
+
+          nameInput.value = existingData.name
+          categorySelect.value = existingData.category
+          descTextarea.value = existingData.description || ''
+          timeInput.value = existingData.time
+
+          pendingEditCard = cardElement
+          pendingEditData = { ...existingData }
+
+          document.querySelector('#recipeForm').scrollIntoView({ behavior: 'smooth', block: 'center' })
+          showToast(`Редактируйте "${existingData.name}", затем нажмите "Опубликовать"`, false)
+        }
+
+        function addOrUpdateRecipe(event) {
+          event.preventDefault()
+
+          const name = document.getElementById('dishName').value.trim()
+          const category = document.getElementById('dishCategory').value
+          const description = document.getElementById('dishDescription').value.trim()
+          const time = parseInt(document.getElementById('dishTime').value, 10)
+
+          if (!name) {
+            showToast('Пожалуйста, укажите название блюда!', true)
+            return
+          }
+          if (isNaN(time) || time < 1) {
+            showToast('Время приготовления должно быть положительным числом', true)
+            return
+          }
+
+          if (pendingEditCard && pendingEditData) {
+            const updatedData = {
+              id: pendingEditData.id,
+              name: name,
+              category: category,
+              description: description,
+              time: time,
+            }
+            const newCard = createRecipeCard(updatedData)
+            pendingEditCard.replaceWith(newCard)
+            pendingEditCard = null
+            pendingEditData = null
+            updateStatistics()
+            showToast(`Рецепт "${name}" обновлён! ✏️`, false)
+            document.getElementById('recipeForm').reset()
+            document.getElementById('dishTime').value = 15
+            return
+          }
+
+          const newId = 'rec_' + Date.now() + '_' + Math.floor(Math.random() * 10000)
+          const newRecipe = {
+            id: newId,
+            name: name,
+            category: category,
+            description: description,
+            time: time,
+          }
+
+          const newCard = createRecipeCard(newRecipe)
+          recipesContainer.appendChild(newCard)
+          updateStatistics()
+          showToast(`Рецепт "${name}" успешно добавлен! 🎉`, false)
+
+          document.getElementById('recipeForm').reset()
+          document.getElementById('dishTime').value = 15
+          document.getElementById('dishName').focus()
+        }
+
+        function resetFormAndCancel() {
+          document.getElementById('recipeForm').reset()
+          document.getElementById('dishTime').value = 15
+          if (pendingEditCard) {
+            pendingEditCard = null
+            pendingEditData = null
+            showToast('Редактирование отменено', false)
+          }
+        }
+
+        function clearAllRecipes() {
+          if (confirm('⚠️ ВНИМАНИЕ: Будут удалены ВСЕ рецепты. Продолжить?')) {
+            const allCards = document.querySelectorAll('.recipe-card-item')
+            if (allCards.length === 0) return
+            allCards.forEach((card) => card.remove())
+            updateStatistics()
+            showToast('Все рецепты удалены 🗑️', false)
+            resetFormAndCancel()
+          }
+        }
+
+        function bindDelegation() {
+          recipesContainer.addEventListener('click', (e) => {
+            const deleteBtn = e.target.closest('.delete-recipe-btn')
+            if (deleteBtn) {
+              const cardItem = deleteBtn.closest('.recipe-card-item')
+              if (cardItem) {
+                const nameElem = cardItem.querySelector('.card-body h5')
+                let recipeName = 'рецепт'
+                if (nameElem) recipeName = nameElem.innerText.replace(/[🍕🍔🍰🥤🎃🌈🧁👹🦄]/g, '').trim()
+                if (confirm(`Удалить "${recipeName}"?`)) {
+                  deleteRecipeCard(cardItem)
+                }
+              }
+              e.preventDefault()
+            }
+
+            const editBtn = e.target.closest('.edit-recipe-btn')
+            if (editBtn) {
+              const cardItem = editBtn.closest('.recipe-card-item')
+              if (cardItem) {
+                const cardBody = cardItem.querySelector('.card-body')
+                const titleElem = cardBody.querySelector('h5')
+                let rawTitle = titleElem ? titleElem.innerHTML : ''
+                let cleanName = rawTitle.replace(/[🍕🍔🍰🥤🎃🌈🧁👹🦄]/g, '').trim()
+                const descElem = cardBody.querySelector('.text-muted')
+                const desc = descElem ? descElem.textContent : ''
+                const badgeElem = cardBody.querySelector('.badge')
+                let timeVal = 15
+                if (badgeElem) {
+                  const timeMatch = badgeElem.textContent.match(/(\d+)/)
+                  if (timeMatch) timeVal = parseInt(timeMatch[1], 10)
+                }
+                const category = cardItem.getAttribute('data-category') || 'Пицца'
+                const recipeId = cardItem.getAttribute('data-id')
+                const existingData = {
+                  id: recipeId,
+                  name: cleanName,
+                  category: category,
+                  description: desc,
+                  time: timeVal,
+                }
+                fillFormForEdit(cardItem, existingData)
+              }
+            }
+          })
+        }
+
+        function init() {
+          const recipeForm = document.getElementById('recipeForm')
+          recipeForm.addEventListener('submit', addOrUpdateRecipe)
+
+          const cancelBtn = document.getElementById('cancelFormBtn')
+          cancelBtn.addEventListener('click', resetFormAndCancel)
+
+          const clearAllBtn = document.getElementById('clearAllRecipesBtn')
+          clearAllBtn.addEventListener('click', clearAllRecipes)
+
+          bindDelegation()
+          updateStatistics()
+        }
+
+        init()
+      })()
+    </script>
   </body>
 </html>

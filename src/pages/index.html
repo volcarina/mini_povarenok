@@ -212,15 +212,23 @@
           </div>
         </div>
 
-        <figure class="mt-4">
+        <!-- Слайдер картинок -->
+        <figure class="mt-4" id="slider-figure">
           <img
-            src="https://previews.123rf.com/images/pressmaster/pressmaster2202/pressmaster220200486/182061038-children-pouring-dough-together-wearing-aprons-looking-at-each-other-with-wide-smiles-while.avif"
+            id="slider-img"
+            src="https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?w=500&h=350&fit=crop"
             alt="Процесс готовки"
             width="500"
             height="350"
+            style="border-radius: 16px; object-fit: cover; transition: opacity 0.3s ease"
           />
+          <figcaption id="slider-caption">Готовим вместе! 🍳</figcaption>
 
-          <figcaption>Готовим вместе!</figcaption>
+          <div class="mt-3 d-flex justify-content-center gap-3">
+            <button class="btn btn-outline-secondary btn-sm" id="btn-prev">◀ Назад</button>
+            <span id="slider-counter" class="align-self-center text-muted small">1 / 4</span>
+            <button class="btn btn-outline-secondary btn-sm" id="btn-next">Вперёд ▶</button>
+          </div>
         </figure>
       </section>
     </main>
@@ -250,12 +258,153 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
 
     <script>
-      document.getElementById('to-top').addEventListener('click', () => {
-        window.scrollTo({
-          top: 0,
-          behavior: 'smooth',
+      window.addEventListener('DOMContentLoaded', () => {
+        console.group('%c📄 DOM загружен — анализ страницы', 'font-size:14px; color:#2ecc71; font-weight:bold;')
+
+        const links = document.querySelectorAll('a')
+        console.group(`%c🔗 Ссылки (всего: ${links.length})`, 'color:#3498db;')
+        links.forEach((link, i) => {
+          console.log(
+            `[${i + 1}] текст: "${link.textContent.trim()}" | href: "${link.getAttribute('href') || '—'}" | target: "${link.getAttribute('target') || '_self'}"`
+          )
+        })
+        console.groupEnd()
+
+        const anchors = document.querySelectorAll('a[href^="#"], [id]')
+        console.group(`%c⚓ Якоря и элементы с id (всего: ${anchors.length})`, 'color:#9b59b6;')
+        anchors.forEach((el, i) => {
+          const isAnchorLink = el.tagName === 'A' && el.getAttribute('href')?.startsWith('#')
+          console.log(
+            `[${i + 1}] <${el.tagName.toLowerCase()}> | id="${el.id || '—'}" | ${isAnchorLink ? 'href="' + el.getAttribute('href') + '"' : ''}`
+          )
+        })
+        console.groupEnd()
+
+        const images = document.querySelectorAll('img')
+        console.group(`%c🖼️ Изображения (всего: ${images.length})`, 'color:#e67e22;')
+        images.forEach((img, i) => {
+          console.log(
+            `[${i + 1}] alt: "${img.alt || '(нет)'}" | src: "${img.src}" | размер: ${img.width || '?'}×${img.height || '?'}`
+          )
+        })
+        console.groupEnd()
+
+        console.groupEnd()
+      })
+
+      document.querySelector('.btn-success')?.addEventListener('click', (e) => {
+        console.log('%c[click] Кнопка "Добавить рецепт" нажата', 'color:#27ae60;', {
+          тип: e.type,
+          элемент: e.target.tagName,
+          текст: e.target.textContent.trim(),
+          координаты: `(${e.clientX}, ${e.clientY})`,
+        })
+        alert('Функция добавления рецепта пока в разработке! 🍴')
+      })
+
+      document.querySelectorAll('.recipe-card').forEach((card) => {
+        card.addEventListener('mouseenter', (e) => {
+          console.log('%c[mouseenter] Наведение на карточку:', 'color:#8e44ad;', {
+            заголовок: card.querySelector('h3')?.textContent.trim(),
+            событие: e.type,
+          })
+        })
+
+        card.addEventListener('mouseleave', (e) => {
+          console.log('%c[mouseleave] Уход мыши с карточки:', 'color:#8e44ad;', {
+            заголовок: card.querySelector('h3')?.textContent.trim(),
+          })
         })
       })
+
+      let lastScrollY = 0
+      window.addEventListener('scroll', () => {
+        const currentY = Math.round(window.scrollY)
+        if (Math.abs(currentY - lastScrollY) > 100) {
+          console.log(`%c[scroll] Прокрутка: ${currentY}px от верха страницы`, 'color:#16a085;')
+          lastScrollY = currentY
+        }
+      })
+
+      const toTopBtn = document.getElementById('to-top')
+      toTopBtn.onclick = (e) => {
+        console.log('%c[onclick] Кнопка "Наверх" нажата (обработчик через .onclick)', 'color:#c0392b;', {
+          тип: e.type,
+          элемент: e.currentTarget.id,
+        })
+        window.scrollTo({ top: 0, behavior: 'smooth' })
+      }
+
+      document.addEventListener('keydown', (e) => {
+        if (['ArrowLeft', 'ArrowRight'].includes(e.key)) {
+          console.log(`%c[keydown] Нажата клавиша: "${e.key}"`, 'color:#d35400;', {
+            код: e.code,
+          })
+          if (e.key === 'ArrowRight') nextSlide()
+          if (e.key === 'ArrowLeft') prevSlide()
+        }
+      })
+
+      const slides = [
+        {
+          src: 'https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?w=500&h=350&fit=crop',
+          caption: 'Готовим вместе! 🍳',
+        },
+        {
+          src: 'https://images.unsplash.com/photo-1547592180-85f173990554?w=500&h=350&fit=crop',
+          caption: 'Свежие ингредиенты 🥦🥕',
+        },
+        {
+          src: 'https://images.unsplash.com/photo-1590779033100-9f60a05a013d?w=500&h=350&fit=crop',
+          caption: 'Маленький шеф-повар 👨‍🍳',
+        },
+        {
+          src: 'https://images.unsplash.com/photo-1476718406336-bb5a9690ee2a?w=500&h=350&fit=crop',
+          caption: 'Вкусный результат! 🎉',
+        },
+      ]
+
+      let currentSlide = 0
+      const sliderImg = document.getElementById('slider-img')
+      const sliderCaption = document.getElementById('slider-caption')
+      const sliderCounter = document.getElementById('slider-counter')
+
+      function goToSlide(index) {
+        sliderImg.style.opacity = '0'
+        setTimeout(() => {
+          sliderImg.src = slides[index].src
+          sliderCaption.textContent = slides[index].caption
+          sliderCounter.textContent = `${index + 1} / ${slides.length}`
+          sliderImg.style.opacity = '1'
+          console.log(
+            `%c[slider] Смена слайда → ${index + 1}/${slides.length}: src="${slides[index].src}"`,
+            'color:#2980b9;'
+          )
+        }, 300)
+      }
+
+      function nextSlide() {
+        currentSlide = (currentSlide + 1) % slides.length
+        goToSlide(currentSlide)
+      }
+
+      function prevSlide() {
+        currentSlide = (currentSlide - 1 + slides.length) % slides.length
+        goToSlide(currentSlide)
+      }
+
+      document.getElementById('btn-next').addEventListener('click', () => {
+        console.log('%c[click] Кнопка "Вперёд" нажата', 'color:#2980b9;')
+        nextSlide()
+      })
+
+      document.getElementById('btn-prev').addEventListener('click', () => {
+        console.log('%c[click] Кнопка "Назад" нажата', 'color:#2980b9;')
+        prevSlide()
+      })
+
+      const autoPlay = setInterval(nextSlide, 4000)
+      sliderImg.addEventListener('mouseenter', () => clearInterval(autoPlay))
     </script>
   </body>
 </html>
